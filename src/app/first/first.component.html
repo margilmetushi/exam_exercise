@@ -1,0 +1,40 @@
+<div class="mx-5 mt-3">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Inserisci codice"
+            [formControl]="codeInput" [ngClass]="getInputClass()" />
+        <label *ngIf="isInputValid() else validLabel" for="floatingInput">Codice non valido </label>
+        <ng-template #validLabel>
+            <label for="floatingInput">Codice prodotto </label>
+        </ng-template>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="sendData()">Primary</button>
+
+    <div class="card text-center mt-3" *ngIf="product">
+        <div class="card-header">
+            {{product.brand}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{product.product}}</h5>
+            <p class="card-text">{{product.ingredients}}</p>
+
+            <div class="container">
+                <div class="row ">
+                    <div class="col card text-center mx-3" *ngFor="let p of product.products;">
+                        <div class="card-header">
+                            {{p.brand}}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{p.product}}</h5>
+                            <p class="card-text">{{p.ingredients}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer text-body-secondary">
+            {{product.category}}
+        </div>
+    </div>
+</div>
